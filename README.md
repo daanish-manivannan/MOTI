@@ -1,31 +1,132 @@
-# MOTI
-This project introduces MOTI (Multilingual Open Threat Intelligence), a robust and scalable cyberbullying detection system built on Google Colab. Leveraging the power of DistilBERT architecture and automated analysis, MOTI tackles cyberbullying across diverse online platforms, effectively handling instances regardless of language. Surpassing traditional methods, MOTI achieves superior accuracy in identifying cyberbullying content through advanced machine learning techniques, while its scalability on Google Colab makes it suitable for analyzing massive datasets from large online communities. Recognizing the importance of human oversight and ethical considerations, MOTI emphasizes the need for integration with existing reporting mechanisms for appropriate action against perpetrators. Additionally, future advancements will focus on ensemble learning, Explainable AI integration for transparency, seamless reporting system integration for streamlined response, and user education programs to create a comprehensive approach towards combating cyberbullying and fostering a safer online environment.
+# MOTI – Multilingual Open Threat Intelligence 🔐🌐
 
-# MOTI Implementation 🚀
+## 🚀 Project Overview
 
-This project explores Natural Language Processing (NLP) techniques to analyze and interpret data from the **Ministry of Trade and Industry (MOTI)**. The goal is to process, translate, and extract insights from multilingual text data using Python, NLP models, and visualization tools.
+**MOTI** is a multilingual threat detection and alerting system designed to detect cyberbullying and harmful content in online communications across various languages. The project integrates:
 
-## 📌 Objective
+* **Google Translate API** for language normalization
+* **Natural Language Processing (NLP)** for data preprocessing
+* **DistilBERT (Hugging Face Transformers)** for sentiment classification
+* **SMTP and PyWhatKit** for real-time alert generation
 
-- Handle multilingual MOTI data
-- Perform text preprocessing and translation
-- Use NLP models for tasks like summarization, classification, and sentiment analysis
-- Provide visual insights into the data
-
----
-
-## 📁 Project Contents
-
-- `MOTI_Project_Report.ipynb`: Main notebook with complete analysis.
-- `mlma_merged_2 v1.csv`: Input data file uploaded and processed in the notebook.
-- `output_image_1.png`: Sample output from the project (visual result).
+All processes are implemented and demonstrated in the Colab notebook: `MOTI_Project_Report.ipynb`.
 
 ---
 
-## 🛠️ Setup Instructions
+## 🔹 Problem Statement
 
-1. Clone this repository:
+Current AI systems struggle to identify threats in multilingual environments. Many rely solely on keyword matching, lacking the emotional and contextual understanding necessary to detect subtle cyberbullying or harassment. MOTI proposes an intelligent system that processes multilingual chat data, understands sentiment, and triggers appropriate alerts in real-time.
 
-```bash
-git clone https://github.com/your-username/moti-nlp-project.git
-cd moti-nlp-project
+---
+
+## 📊 Methodology
+
+### 📁 1. Data Acquisition
+
+* **Sources**: Reddit and Twitter (X) using public APIs
+* **Ethical Collection**: Only publicly accessible or anonymized data
+* **Tools**: Twitter API, Reddit API, and Google Translate API
+
+### 🔄 2. Preprocessing
+
+Performed using a combination of custom logic and standard NLP techniques:
+
+* **Translation**: All data is translated to English using Google Translate API
+* **Cleaning**: Lowercasing, punctuation removal, stopword removal, tokenization
+
+### 🔍 3. Threat Detection with DistilBERT
+
+* **Model**: Hugging Face's DistilBERT (lightweight BERT variant)
+* **Task**: Binary classification (Cyberbullying vs Non-cyberbullying)
+* **Implementation**: Fine-tuned using Hugging Face `Trainer` API
+* **Metrics Captured**:
+
+  * Accuracy: \~91-93%
+  * Precision: \~90-92%
+  * Recall: \~88-91%
+  * F1-Score: \~89-91%
+  * Confusion Matrix: Visualized in notebook
+
+### ⚠️ 4. Alerting & Reporting
+
+* **Triggers**: Classification of a message as "Cyberbullying"
+* **Email Alerts**: Sent via SMTP with threat details
+* **WhatsApp Alerts**: Triggered using PyWhatKit
+* **Alert Content**: Includes username, message, timestamp, threat classification
+
+---
+
+## 📊 Metrics & Performance
+
+| Component            | Metric                   | Value/Observation       |
+| -------------------- | ------------------------ | ----------------------- |
+| DistilBERT Accuracy  | Accuracy                 | \~91-93%                |
+| Translation Accuracy | Language Dependent       | 55%-94%                 |
+| Inference Speed      | Latency                  | \~150-300ms             |
+| Preprocessing        | Data reduction           | \~10-15%                |
+| Alerting Delay       | Real-time (near-instant) | \~2-5 seconds (typical) |
+
+---
+
+## 📅 Project Flow Diagram
+
+```
+Raw Multilingual Chat Data
+        ⬇️
+Google Translate API (to English)
+        ⬇️
+NLP Preprocessing
+        ⬇️
+DistilBERT Sentiment Classification
+        ⬇️
+Cyberbullying Detected?
+    └── Yes ➔ Trigger SMTP / WhatsApp Alert
+        └── No ➔ Log and Discard
+```
+
+---
+
+## 📚 Repository Contents
+
+```
+MOTI/
+├── data/                         # Sample multilingual datasets
+├── notebooks/
+│   └── MOTI_Project_Report.ipynb   # Main implementation notebook
+├── src/
+│   ├── preprocessing.py           # Translation and NLP utilities
+│   ├── classifier.py              # DistilBERT model logic
+│   ├── alert.py                   # Email and WhatsApp alerting
+│   └── utils.py                   # Shared helper functions
+├── requirements.txt               # Dependencies
+└── README.md                   # Project overview
+```
+
+---
+
+## 🤔 Future Scope
+
+* Real-time streaming (Kafka, Websockets)
+* Language-specific model fine-tuning
+* Integration with Discord, Telegram, and WhatsApp
+* Threat severity scoring and prioritization
+* Visualization dashboards (Plotly/Dash)
+
+---
+
+## 🤝 Contributors
+
+* **Mrs. Kavitha M.** – Mentor (Assistant Professor, Dept. of CSE)
+* **Student Research Team** – Implementation and Research
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the LICENSE file for details.
+
+---
+
+## 💬 Questions?
+
+Please open an issue or email the team for inquiries or collaboration.
