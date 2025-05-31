@@ -114,11 +114,6 @@ MOTI/
 
 ---
 
-## 🤝 Contributors
-
-* **Mrs. Kavitha M.** – Mentor (Assistant Professor, Dept. of CSE)
-* **Student Research Team** – Implementation and Research
-
 ---
 
 ## 📄 License
